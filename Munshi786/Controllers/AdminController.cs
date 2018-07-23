@@ -6,9 +6,14 @@ using System.Web.Mvc;
 
 namespace Munshi786.Controllers
 {
-    public class HomeController : Controller
+    public class AdminController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult Dashboard()
         {
             return View();
         }
@@ -20,11 +25,6 @@ namespace Munshi786.Controllers
             return View();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+       
     }
 }

@@ -1,0 +1,109 @@
+﻿@{
+    /**/
+    ViewBag.Title = "Dashboard";
+}
+<style>
+    caption {
+        text-align: center;
+        font-weight: bold;
+        color: white;
+        text-transform: uppercase;
+    }
+</style>
+<script src="~/Scripts/highcharts.js"></script>
+<script src="~/Scripts/exporting.js"></script>
+<script src="~/Scripts/export-data.js"></script>
+<center>
+    <div class="col-md-10" style="margin-top:5px;">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel" style="background-color:#1D5882">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3" >
+                            <i class="fa fa-sitemap fa-5x" style="height: 30px !important"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div style="font-size: 30px;" id="totTreeChild">0</div>
+                            <div>People in 10 Levels</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel" style="background-color:#08544C">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-street-view fa-5x" style="height: 30px !important"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div style="font-size: 30px;" id="SpChildCount">0</div>
+                            <div>Personally Sponsored</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel" style="background-color:#511A37">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fab fa-bitcoin fa-5x" style="height: 30px !important"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div style="font-size: 30px;" id="FSBSum">0</div>
+                            <div>Fast Start Bonus</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel" style="background-color:#AC8642">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fas fa-hand-holding-usd fa-5x" style="height: 30px !important"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div style="font-size: 30px;" id="POSum">0</div>
+                            <div> Payout</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left"></span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+</center>
+
