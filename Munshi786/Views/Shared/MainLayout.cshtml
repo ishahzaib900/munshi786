@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Munshi786 | @ViewBag.Title </title>
+    <link href="~/Content/Images/somelogo.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    @*taurus theme file*@
+    <link href="~/Content/Themes/Taurus/css/stylesheets.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/Themes/Taurus/css/fonts/all.css" rel="stylesheet" />
+    <link href="~/Content/Themes/Taurus/css/fonts/fontawesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Varela+Round" />
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/jquery/jquery.min.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/jquery/jquery-ui.min.js'></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/jquery/jquery-migrate.min.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/jquery/globalize.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/bootstrap/bootstrap.min.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/uniform/jquery.uniform.min.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/knob/jquery.knob.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/sparkline/jquery.sparkline.min.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/flot/jquery.flot.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins/flot/jquery.flot.resize.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/plugins.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/actions.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/charts.js'></script>
+    <script type='text/javascript' src='~/Content/Themes/Taurus/js/settings.js'></script>
+    <script src="~/Content/Themes/Taurus/js/all.js"></script>
+    <script src="~/Content/Themes/Taurus/js/fontawesome.js"></script>
+
+    @*-----------*@
+
+   
+    <link href="~/Content/css/toastr.min.css" rel="stylesheet" />
+    <script src="~/Scripts/getorgchart.js"></script>
+    <link href="~/Content/css/getorgchart.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900|Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+</head>
+<body class="bg-img-num1" style="font-family: 'Poppins'">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                <nav class="navbar brb" role="navigation" style="background-color: #2a3942">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-reorder"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><img width="100" height="100" style="margin-top:-2px" src="~/Content/Images/MunshiLogo.png" /></a>
+                        <div class="col-md-12" style="margin-left: 140px"><h1 style="color: #c0c0c0">Munshi786</h1></div>
+                    </div>
+
+                    <div class="row">
+
+
+                        @*@if (Session[ShareData.Session.LogedUser] != null)
+                        {
+                              <div class="collapse navbar-collapse navbar-ex1-collapse">
+                                <ul class="nav navbar-nav pull-right">
+
+                                    <li class="dropdown pull-right">
+
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <p style="font-weight:bold; font-size: 12px;color: #c0c0c0">
+                                                @Ouser.UserName
+
+
+                                                <img class="img-circle" src="~/Content/Images/usericon.png" width="50" height="50" style="margin-left:3px; margin-top:-5px" />
+                                            </p>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Action("EditProfile","Account")">Profile Settings</a></li>
+                                            <li><a href="@Url.Action("SecuritySettings","Account")">Security Settings</a></li>
+                                            <li><a href="#">Communications</a></li>
+                                            <li><a id="SignOut">Sign out</a></li>
+                                        </ul>
+
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        }*@
+                    </div>
+
+
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-2" style="z-index:1;margin-top: 5px">
+
+                <div class="block" style="background-color: #2A3942">
+                    <div class="user bg-default" style="background-color: #2A3942">
+                        <div class="info">
+                            <img src="~/Content/Images/usericon.png" class="img-circle img-thumbnail" />
+                        </div>
+                    </div>
+                    <div class="content list-group list-group-icons">
+                                              <a href="#" class="list-group-item" style="color:#C0C0C0"><span class="icon-money" style="color:#C0C0C0"></span>Matrix Bonus (Soon)</a>
+                        <a href="#" class="list-group-item" style="color:#C0C0C0"><span class="icon-bar-chart" style="color:#C0C0C0"></span>Personal Matching Bonus (Soon)</a>
+                        <a href="#" class="list-group-item" style="color:#C0C0C0"><span class="icon-bar-chart" style="color:#C0C0C0"></span>Level Matching Bonus (Soon)</a>
+                        <a href="#" class="list-group-item" style="color:#C0C0C0"><span class="icon-bar-chart" style="color:#C0C0C0"></span>Place a Person (Soon)</a>
+                        <a href="#" class="list-group-item" style="color:#C0C0C0"><span class="icon-bar-chart" style="color:#C0C0C0"></span>CryptoBot (Soon)</a>
+                        <a href="#" class="list-group-item" style="color:#C0C0C0"><span class="icon-bar-chart" style="color:#C0C0C0"></span>ClickIt (Soon)</a>
+
+
+                    </div>
+                </div>
+            </div>
+            @RenderBody()
+        </div>
+        @*Footer*@
+        @*<div class="row">
+                <div class="page-footer">
+                    <div class="page-footer-wrap">
+                        <div class="side pull-left">
+                            Copyirght &COPY; Software Alliance. All rights reserved.
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+       
+        @RenderSection("scripts", required: false)
+    </div>
+
+    <!--Theme  Settings-->
+    @*@Html.Partial("~/Views/Shared/ThemeSettings.cshtml")*@
+    <script type="text/javascript">
+        $("#SignOut").click(function () {
+
+            $.ajax({
+
+
+                type: "POST",
+               url: '@Url.Action("LogOff", "Account")',
+                success: function (data) {
+                    if (data == true) {
+                        window.location.href ='@Url.Action("Login", "Account")'
+                    }
+                    else {
+
+                        alert("error");
+                    }
+                },
+                error: function (req, status, error) {
+
+                    alert(error);
+                }
+            });
+            return false;
+        });
+
+    </script>
+</body>
+</html>

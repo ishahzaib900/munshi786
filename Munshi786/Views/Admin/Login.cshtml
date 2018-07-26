@@ -1,0 +1,71 @@
+﻿@{
+                ViewBag.Title = "Login";
+                Layout = "~/Views/Shared/_LoginPartial.cshtml";
+}
+<style>
+    .middle-Login {
+        margin-top: 48%;
+    }
+</style>
+
+<div class="login-block">
+
+    <div class="block block-transparent">
+        <div class="middle-Login" align="center">
+            <img width="100" height="100" style="margin-top:-2px" src="~/Content/Images/MunshiLogo.png" />
+            <div style="height: 20px;"></div>
+            @using (Html.BeginForm("Login", "Admin", FormMethod.Post, new { @class = "form-signin" }))
+            {
+
+                <div class="content controls npt" style="font-family: 'Poppins' !important">
+                    @*<div class="form-row user-change-row">*@
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="icon-user"></span>
+                                </div>
+                                <input type="text" class="form-control" name="UserName" placeholder="Username" required="" autofocus="" style="font-family: 'Poppins' !important" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <span class="icon-key"></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="Password" name="Password" required="" style="font-family: 'Poppins' !important" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            @Html.ValidationMessage("error", new { @class = "text-danger", style = "font-weight:Bold;font-size:14px" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <a href="@Url.Action("Register", "Admin")" class="btn btn-default btn-block btn-clean" style="font-family: 'Poppins' !important">Register</a>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-default btn-block btn-clean" name="Submit" value="Login" type="Submit" style="font-family: 'Poppins' !important">Log In</button>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            <a href="@Url.Action("ForgetPassword", "Admin")" class="btn btn-link btn-block" style="font-family: 'Poppins' !important">Forgot your password?</a>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
