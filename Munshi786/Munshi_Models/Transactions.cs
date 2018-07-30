@@ -9,9 +9,9 @@ namespace Munshi786.Munshi_Models
     {
         public int id { get; set; }
 
-        public int from { get; set; }
+        public int from_id { get; set; }
 
-        public int to { get; set; }
+        public int to_id { get; set; }
 
         public decimal payment { get; set; }
 

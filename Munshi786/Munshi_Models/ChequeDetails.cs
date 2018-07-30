@@ -17,6 +17,6 @@ namespace Munshi786.Munshi_Models
 
         public decimal cheque_amount { get; set; }
 
-        public int cheque_by { get; set; }
+        public int cheque_by_id { get; set; }
     }
 }
