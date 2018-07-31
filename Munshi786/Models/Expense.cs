@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Munshi786.Models
 {
-    public class GeneralExpense
+    public class Expense
     {
         public int id { get; set; }
 
@@ -22,5 +22,14 @@ namespace Munshi786.Models
         public DateTime payment_date { get; set; }
 
         public string description { get; set; }
+
+        public int added_by { get; set; }
+
+        public int status { get; set; }
+
+        public DateTime added_date { get; set; }
+
+        public DateTime expence_date { get; set; }
+
     }
 }

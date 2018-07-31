@@ -24,6 +24,11 @@ namespace Munshi786.Controllers
             return View();
         }
 
-       
+        #region Expence
+        public ActionResult AddExpence()
+        {
+            return View();
+        }
+        #endregion      
     }
 }
