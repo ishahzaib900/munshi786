@@ -9,7 +9,7 @@ namespace Munshi786.Controllers
 {
     public class PropertyController : Controller
     {
-        // GET: Property
+        MunshiDBContext db = new MunshiDBContext();
         public ActionResult AddProperty()
         {
             return View();
@@ -17,12 +17,27 @@ namespace Munshi786.Controllers
         [HttpPost]
         public ActionResult AddProperty(Property p)
         {
-            return View();
+
+            //var m = PropertyController.GetMonthDifference(p.contract_start_date, p.contract_end_date);
+
+            p.rent = Convert.ToDecimal(Request["rent"]);
+            p.commission = Convert.ToDecimal(Request["commission"]);
+            p.no_beds = Convert.ToInt32(Request["beds"]);
+            p.no_cheques = Convert.ToInt32(Request["cheques"]);
+            p.deposite = Convert.ToDecimal(Request["deposite"]);
+
+            if (ModelState.IsValid)
+            {
+                db.Properties.Add(p);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("AddProperty");
         }
 
         public ActionResult ListProperty()
         {
-            return View();
+            return View(db.Properties.ToList());
         }
 
         public ActionResult AddExpenseType()
@@ -40,6 +55,11 @@ namespace Munshi786.Controllers
             return View();
         }
 
+        public static int GetMonthDifference(DateTime startDate, DateTime endDate)
+        {
+            int monthsApart = Math.Abs(12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month);
+            return monthsApart;
+        }
 
     }
 }

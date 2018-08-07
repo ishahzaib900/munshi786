@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Munshi786.Models
 {
-    public class ChequeDetails
+    public class ChequeDetail
     {
         public int id { get; set; }
 

@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Munshi786.Models.Property>
+
+@{
+    ViewBag.Title = "ListProperty";
+}
+
+<h2>ListProperty</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.building)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contract_start_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.contract_end_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.deposite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.commission)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.building)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contract_start_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.contract_end_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.rent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.deposite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.commission)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
