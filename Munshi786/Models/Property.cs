@@ -43,5 +43,9 @@ namespace Munshi786.Models
         public string du_no { get; set; }
 
         public string empower_no { get; set; }
+        public string file { get; set; }
+        public DateTime created_date { get; set; }
+        public int created_by { get; set; }
+        public int owner_id { get; set; }
     }
 }

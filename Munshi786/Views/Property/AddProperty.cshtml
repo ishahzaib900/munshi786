@@ -4,108 +4,97 @@
 
 }
 
-
-
-<div class="block block-fill-white">
+<div class="col-md-6 col-md-offset-3">
+<div class="block">
     <div class="header">
         <h2>Add Property</h2>
     </div>
     <div class="content controls">
-        <form action="/Property/AddProperty" method="post" >
-        <div class="form-row">
-            <div class="col-md-3">Area*</div>
-            <div class="col-md-9">@Html.TextBoxFor(m => m.area, new { @class = "form-control" })</div>
-        </div>
-        <div class="form-row">
-            <div class="col-md-3">Building*</div>
-            <div class="col-md-9">@Html.TextBoxFor(m => m.building, new { @class = "form-control" })</div>
-        </div>
+        <form action="/Property/AddProperty" method="post">
+            <div class="form-row">
+                <div class="col-md-3">Area*</div>
+                <div class="col-md-9">@Html.TextBoxFor(m => m.area, new { @class = "form-control" })</div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-3">Building*</div>
+                <div class="col-md-9">@Html.TextBoxFor(m => m.building, new { @class = "form-control" })</div>
+            </div>
 
-        
             <div class="form-row">
                 <div class="col-md-3">Contract Starting Date*</div>
-                <div class="col-md-9">
+                <div class="col-md-3">
                     <div class="input-group">
-                            <div class="input-group-addon"><span class="icon-calendar"></span></div>
-                            @*<input type="text" class="mdatepicker form-control" value="09/15/2013" />*@
-                        @Html.TextBoxFor(m => m.contract_start_date, new {@class = "datepicker form-control" })
+                        <div class="input-group-addon"><span class="icon-calendar"></span></div>
+                        @*<input type="text" class="mdatepicker form-control" value="09/15/2013" />*@
+                        @Html.TextBoxFor(m => m.contract_start_date, new { @class = "datepicker form-control" })
                     </div>
                 </div>
-            </div>
-        <div class="form-row">
-            <div class="col-md-3">Contract Ending Date*</div>
-            <div class="col-md-9">
-                <div class="input-group">
-                    <div class="input-group-addon"><span class="icon-calendar-empty"></span></div>
-                    @Html.TextBoxFor(m => m.contract_end_date, new { @class = "datepicker form-control" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="col-md-3">Rent*</div>
-            <div class="col-md-9">
-                <input type="number" class="form-control" step="1" name="rent" /> 
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-md-3">Deposite*</div>
-            <div class="col-md-9">
-                <input type="number" class="form-control" step="1" name="deposite" />
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-md-3">Commission*</div>
-            <div class="col-md-9">
-                <input type="number" class="form-control" step="1" name="commission" />
-            </div>
-        </div>
-            
-        <div class="form-row">
-            <div class="col-md-3">Num Of Beds</div>
-            <div class="col-md-9"><input type="number" class="form-control" step="1" name="beds" /></div>
-        </div>
-        <div class="form-row">
-            <div class="col-md-3">Num Of Cheques</div>
-            <div class="col-md-9"><input type="number" class="form-control" step="1" name="cheques" /></div>
-        </div>
-        <div class="form-row">
-            <div class="col-md-3">Appartment Number*</div>
-            <div class="col-md-9">@Html.TextBoxFor(m => m.appartment_no, new { @class = "form-control" })</div>
-        </div>
-
-        <div class="form-row">
-            <div class="col-md-3">Dewa Number*</div>
-            <div class="col-md-9">@Html.TextBoxFor(m=>m.dewa_no, new {@class = "form-control" })</div>
-        </div>
-
-        <div class="form-row">
-            <div class="col-md-3">Du Number</div>
-            <div class="col-md-9">@Html.TextBoxFor(m => m.du_no, new { @class = "form-control" })</div>
-        </div>
-
-        <div class="form-row">
-            <div class="col-md-3">Empower Number</div>
-            <div class="col-md-9">@Html.TextBoxFor(m => m.empower_no, new { @class = "form-control" })</div>
-        </div>
-
-        <div class="form-row">
-            <div class="col-md-3">Styled File Input:</div>
-            <div class="col-md-9">
-                <input type="file" class="fileinput" name="filename2" id="filename_1" />
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col-md-4">
-                <div class="block">
-                    <div class="content">
-                        <button type="submit" class="btn btn-default btn-block">Add Property</button>
+                <div class="col-md-3">Contract Ending Date*</div>
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="icon-calendar"></span></div>
+                        @Html.TextBoxFor(m => m.contract_end_date, new { @class = "mdatepicker  datepicker form-control " })
                     </div>
                 </div>
+            </div>        
+            <div class="form-row">
+                <div class="col-md-3">Rent*</div>
+                <div class="col-md-9">
+                    <input type="number" class="form-control" step="1" name="rent" />
+                </div>
             </div>
-        </div>
-    </form>
+            <div class="form-row">
+                <div class="col-md-3">Deposite*</div>
+                <div class="col-md-9">
+                    <input type="number" class="form-control" step="1" name="deposite" />
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-3">Commission*</div>
+                <div class="col-md-9">
+                    <input type="number" class="form-control" step="1" name="commission" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-3">Num Of Beds</div>
+                <div class="col-md-9"><input type="number" class="form-control" step="1" name="beds" /></div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-3">Num Of Cheques</div>
+                <div class="col-md-9"><input type="number" class="form-control" step="1" name="cheques" /></div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-3">Appartment Number*</div>
+                <div class="col-md-9">@Html.TextBoxFor(m => m.appartment_no, new { @class = "form-control" })</div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-3">Dewa Number*</div>
+                <div class="col-md-9">@Html.TextBoxFor(m => m.dewa_no, new { @class = "form-control" })</div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-3">Du Number</div>
+                <div class="col-md-9">@Html.TextBoxFor(m => m.du_no, new { @class = "form-control" })</div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-3">Empower Number</div>
+                <div class="col-md-9">@Html.TextBoxFor(m => m.empower_no, new { @class = "form-control" })</div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-md-3">File </div>
+                <div class="col-md-9">
+                    <a class="file-input-wrapper btn btn-default  fileinput"><span>Browse</span><input type="file"  name="files" id="files" style="left: -6.125px; top: -6px;"></a>
+                </div>
+            </div>
+            <div class="form-row">
+           <button type="submit" class="btn btn-success btn-block">Add Property</button>
+            </div>
+        </form>
 
     </div>
 </div> 
-
+    </div>

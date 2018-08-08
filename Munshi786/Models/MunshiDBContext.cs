@@ -17,5 +17,6 @@ namespace Munshi786.Models
         public DbSet<Expense> Expenses { get; set; }
 
         public DbSet<ChequeDetail> ChequeDetails { get; set; }
+        public DbSet<Users> Users { get; set; }
     }
 }
