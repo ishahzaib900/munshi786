@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -19,6 +20,12 @@ namespace Munshi786.Models
 
         public int cheque_by_id { get; set; }
 
-        public int appartment_id { get; set; }
+        public Nullable<int> appartment_id { get; set; }
+
+        [NotMapped]
+        public string cheque_date_string { get; set; }
+
+        [NotMapped]
+        public string cheque_till_string { get; set; }
     }
 }

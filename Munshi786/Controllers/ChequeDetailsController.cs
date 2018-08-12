@@ -26,5 +26,17 @@ namespace Munshi786.Controllers
             return false;
         }
 
+        public JsonResult GetPropertyCheques(int id)
+        {
+            var list = db.ChequeDetails.Where(m => m.appartment_id == id);
+            foreach(var item in list)
+            {
+                item.cheque_date_string = (item.cheque_date).ToString();
+                item.cheque_till_string = (item.cheque_till).ToString();
+            }
+            string name = db.Users.Where(m=>m.Id==list.FirstOrDefault().cheque_by_id).FirstOrDefault().FirstName+" "+ db.Users.Where(m => m.Id == list.FirstOrDefault().cheque_by_id).FirstOrDefault().LastName;
+            return Json(new { data = list, cheque_by = name},JsonRequestBehavior.AllowGet );
+        }
+
     }
 }

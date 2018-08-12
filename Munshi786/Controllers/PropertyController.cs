@@ -49,6 +49,7 @@ namespace Munshi786.Controllers
             {
                 db.Properties.Add(p);
                 db.SaveChanges();
+                int? propertyId = p.id;
 
                 var m = PropertyController.GetMonthDifference(p.contract_start_date, p.contract_end_date);
                 int m_diff = Convert.ToInt32(m / p.no_cheques);
@@ -63,8 +64,8 @@ namespace Munshi786.Controllers
                         cheque_amount = cheque_Amount,
                         cheque_date = dateStart,
                         cheque_till = dateStart.AddMonths(m_diff),
-                        cheque_by_id = 1,
-                        appartment_id = 13,
+                        cheque_by_id = 2,
+                        appartment_id = propertyId ,
                         cheque_no = rand.Next()
                     };
                     var added = new ChequeDetailsController().AddCheque(cd);
@@ -82,7 +83,13 @@ namespace Munshi786.Controllers
 
         public ActionResult ListProperty()
         {
-            return View(db.Properties.ToList());
+            var list = db.Properties.ToList();
+            foreach(var item in list)
+            {
+                item.contract_renew = (item.contract_end_date - item.contract_start_date).Days;
+            }
+            return View(list);
+
         }
 
         public ActionResult AddExpenseType()
@@ -105,6 +112,8 @@ namespace Munshi786.Controllers
             int monthsApart = Math.Abs(12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month);
             return monthsApart;
         }
+
+        
 
     }
 }

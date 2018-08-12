@@ -219,6 +219,10 @@
     <Compile Include="Migrations\201808081956199_chequeDetailModelChange.Designer.cs">
       <DependentUpon>201808081956199_chequeDetailModelChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808122034364_modelupdate.cs" />
+    <Compile Include="Migrations\201808122034364_modelupdate.Designer.cs">
+      <DependentUpon>201808122034364_modelupdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ChequeDetail.cs" />
@@ -537,6 +541,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808081956199_chequeDetailModelChange.resx">
       <DependentUpon>201808081956199_chequeDetailModelChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808122034364_modelupdate.resx">
+      <DependentUpon>201808122034364_modelupdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

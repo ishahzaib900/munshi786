@@ -10,7 +10,8 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
+    <tr style="color:cornflowerblue" >
+        <th></th>
         <th>
             @Html.DisplayNameFor(model => model.building)
         </th>
@@ -29,11 +30,15 @@
         <th>
             @Html.DisplayNameFor(model => model.commission)
         </th>
+        <th>Renew Contract</th>
         <th>Actions</th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    <tr id="@item.id">
+        <td>
+            <span id="@item.id" onclick="GetCheques(@item.id)" class="icon-plus-sign"></span>
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.building)
         </td>
@@ -52,12 +57,88 @@
         <td>
             @Html.DisplayFor(modelItem => item.commission)
         </td>
+        <td><span class="label label-info">@item.contract_renew days left</span></td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            <a href="/property/updproperty/@item.id" class="btn btn-default btn-lg"><span class="icon-refresh"></span></a> 
+            <a href="/property/delproperty/@item.id" class="btn btn-danger"><span class="icon-trash"></span></a> 
         </td>
     </tr>
 }
 
 </table>
+
+
+@section scripts {
+        
+    @* Srcipt Auther: Shahzaib Iqbal (ishahzaib900@gmail.com) *@
+       <script type="text/javascript">
+           
+           // gets cheques details from server against the property selected
+           // adds rows for the check details bellow the selected property row
+           function GetCheques(id)
+           {
+               $("span[id='" + id + "']").removeAttr("onclick").attr("onclick", "ToggleCheques(" + id + ")");
+               $("span[id='" + id + "']").removeClass("icon-plus-sign").addClass("icon-minus-sign");
+               
+               $.get("/chequedetails/getpropertycheques/"+id, function (data, status) {
+
+                   if (status == "success")
+                   {
+                       $("tr[id='" + id + "']").after(
+                       "<tr id='tr_cheque_" + id + "' style='color:orange'>" +
+                       "<th></th>" +
+                       "<th>Cheque Number</th>" +
+                       "<th>Cheque Date</th>" +
+                       "<th>Cheque Till</th>" +
+                       "<th>Cheque Amount</th>" +
+                       "<th>Cheque By</th>" +
+                       "<th></th>" +
+                       "<th></th>" +
+                       "</tr>"
+                       );
+
+                       $.each(data.data, function (i, item) {
+                           $("tr[id='tr_cheque_" + id + "']").after(
+                               "<tr class='tr_cheque_" + id + "' style='color:cyan'>" +
+                               "<td></td>"+
+                               "<td>" + item.cheque_no + "</td>" +
+                               "<td>" + item.cheque_date_string + "</td>" +
+                               "<td>" + item.cheque_till_string + "</td>" +
+                               "<td>" + item.cheque_amount + "</td>" +
+                               "<td>" + data.cheque_by + "</td>" +
+                               "<td></td>" +
+                               "<td></td>" +
+                               "</tr>"
+                               );
+                       })
+                   }
+               });
+
+           }
+
+           // toggle visibitly of cheques after they have been got from the server
+           // this avoids the server request for cheques to be made again
+           function ToggleCheques(id) {
+
+               if ($("span[id='" + id + "']").attr("class") == "icon-minus-sign") {
+                   $("span[id='" + id + "']").removeClass("icon-minus-sign").addClass("icon-plus-sign");
+               }
+               else {
+                   $("span[id='" + id + "']").removeClass("icon-plus-sign").addClass("icon-minus-sign");
+               }
+
+               if ($("#tr_cheque_" + id).is(":visible") || $("tr.tr_cheque_" + id).is(":visible"))
+               {
+                   $("#tr_cheque_" + id).hide();
+                   $("tr.tr_cheque_" + id).hide();
+               }
+               else if ($("#tr_cheque_" + id).is(":hidden") || $("tr.tr_cheque_" + id).is(":hidden")) {
+                   $("#tr_cheque_" + id).show();
+                   $("tr.tr_cheque_" + id).show();
+               }
+
+           }
+
+       </script>
+    
+}
