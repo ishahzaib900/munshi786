@@ -28,7 +28,7 @@ namespace Munshi786.Controllers
 
         public JsonResult GetPropertyCheques(int id)
         {
-            var list = db.ChequeDetails.Where(m => m.appartment_id == id);
+            var list = db.ChequeDetails.Where(m => m.appartment_id == id).ToList();
             foreach(var item in list)
             {
                 item.cheque_date_string = (item.cheque_date).ToString();

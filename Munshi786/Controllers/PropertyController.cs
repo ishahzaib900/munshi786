@@ -10,34 +10,34 @@ namespace Munshi786.Controllers
 {
     public class PropertyController : Controller
     {
+
         MunshiDBContext db = new MunshiDBContext();
+
+
+        #region Property
         public ActionResult AddProperty()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult AddProperty(Property p, HttpPostedFileBase[] files)
+        public ActionResult AddProperty(Property p, HttpPostedFileBase files)
         {
-            //Users oUser=(Users)Session["logged"];
-            //p.created_by = oUser.Id;
-            p.created_by = 1;
+            Users oUser=(Users)Session["logged"];
+            p.created_by = oUser.Id;
             p.created_date = DateTime.Now;
-            p.owner_id = 1;
-            //if (files != null)
-            //{
-            //    string path="";
-            //    foreach (HttpPostedFileBase file in files)
-            //    {
-            //        string picture = Path.GetFileName(file.FileName);
-            //         path = Path.Combine(Server.MapPath("~/Content/PropertyDox"), picture);
-            //        string[] paths = path.Split('.');
-            //        string time = DateTime.UtcNow.ToString();
-            //        time = time.Replace(" ", "-");
-            //        time = time.Replace(":", "-");
-            //        file.SaveAs(paths[0] + "-" + time + Path.GetExtension(file.FileName));
-            //    }
-            //    p.file=path;
-            //}
+            p.owner_id = oUser.Id;
+            if (files != null)
+            {
+                    string path = "";
+                    string picture = Path.GetFileName(files.FileName);
+                    path = Path.Combine(Server.MapPath("~/Content/PropertyDox"), picture);
+                    string[] paths = path.Split('.');
+                    string time = DateTime.UtcNow.ToString();
+                    time = time.Replace(" ", "-");
+                    time = time.Replace(":", "-");
+                    files.SaveAs(paths[0] + "-" + time + Path.GetExtension(files.FileName));
+                    p.file = path;
+            }
 
 
             //p.rent = Convert.ToDecimal(Request["rent"]);
@@ -92,15 +92,10 @@ namespace Munshi786.Controllers
 
         }
 
-        public ActionResult AddExpenseType()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AddExpenseType(ExpenseType exp)
-        {
-            return View();
-        }
+
+        #endregion
+
+        #region Cheque
 
         public ActionResult ChequeDetails()
         {
@@ -113,7 +108,41 @@ namespace Munshi786.Controllers
             return monthsApart;
         }
 
-        
+        #endregion
+
+
+        #region Expence
+        public ActionResult AddExpenseType()
+        {
+            if (Session["logged"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "Admin");
+        }
+        [HttpPost]
+        public ActionResult AddExpenseType(ExpenseType exp)
+        {
+            db.ExpenseTypes.Add(exp);
+            db.SaveChanges();
+            return RedirectToAction("AddExpenseType", "Property");
+        }
+        public ActionResult AddExpense()
+        {
+            if (Session["logged"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login","Admin");
+        }
+        [HttpPost]
+        public ActionResult AddExpense(Expense exp)
+        {
+            db.Expenses.Add(exp);
+            db.SaveChanges();
+            return RedirectToAction("AddExpense", "Property");
+        }
+        #endregion
 
     }
 }

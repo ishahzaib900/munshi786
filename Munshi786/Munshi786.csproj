@@ -215,6 +215,14 @@
     <Compile Include="Migrations\201808061755169_New.Designer.cs">
       <DependentUpon>201808061755169_New.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808081759323_Prop.cs" />
+    <Compile Include="Migrations\201808081759323_Prop.Designer.cs">
+      <DependentUpon>201808081759323_Prop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808081854599_shaw.cs" />
+    <Compile Include="Migrations\201808081854599_shaw.Designer.cs">
+      <DependentUpon>201808081854599_shaw.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201808081956199_chequeDetailModelChange.cs" />
     <Compile Include="Migrations\201808081956199_chequeDetailModelChange.Designer.cs">
       <DependentUpon>201808081956199_chequeDetailModelChange.cs</DependentUpon>
@@ -222,6 +230,10 @@
     <Compile Include="Migrations\201808122034364_modelupdate.cs" />
     <Compile Include="Migrations\201808122034364_modelupdate.Designer.cs">
       <DependentUpon>201808122034364_modelupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808141953426_Status.cs" />
+    <Compile Include="Migrations\201808141953426_Status.Designer.cs">
+      <DependentUpon>201808141953426_Status.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -511,14 +523,18 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\MainLayout.cshtml" />
-    <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Property\Dashboard.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Property\AddProperty.cshtml" />
     <Content Include="Views\Shared\_LayoutNew.cshtml" />
     <Content Include="Views\Property\ListProperty.cshtml" />
+    <Content Include="Views\Property\AddExpence.cshtml" />
+    <Content Include="Views\Property\AddExpenseType.cshtml" />
+    <Content Include="Views\Property\AddExpense.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="bin\" />
     <Folder Include="Views\ChequeDetails\" />
   </ItemGroup>
   <ItemGroup>
@@ -539,11 +555,20 @@
     <EmbeddedResource Include="Migrations\201808061755169_New.resx">
       <DependentUpon>201808061755169_New.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808081759323_Prop.resx">
+      <DependentUpon>201808081759323_Prop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808081854599_shaw.resx">
+      <DependentUpon>201808081854599_shaw.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808081956199_chequeDetailModelChange.resx">
       <DependentUpon>201808081956199_chequeDetailModelChange.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808122034364_modelupdate.resx">
       <DependentUpon>201808122034364_modelupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808141953426_Status.resx">
+      <DependentUpon>201808141953426_Status.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
