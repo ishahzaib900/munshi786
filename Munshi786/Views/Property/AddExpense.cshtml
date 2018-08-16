@@ -2,103 +2,208 @@
 @{
     ViewBag.Title = "AddExpense";
     Layout = "~/Views/Shared/MainLayout.cshtml";
-
     Munshi786.Models.MunshiDBContext db = new Munshi786.Models.MunshiDBContext();
-    ViewBag.PropList= db.Properties.Where(m => m.status == 1).ToList();
+    ViewBag.PropList = db.Properties.Where(m => m.status == 1).ToList();
     ViewBag.ExpList = db.ExpenseTypes.Where(m => m.status == 1).ToList();
+    ViewBag.UserList = db.Users.ToList();
 
 }
 
 <h2>AddExpense</h2>
 
-@using (Html.BeginForm("AddExpense", "Property"))
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Expense</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.appartment_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.appartment_id, new SelectList(ViewBag.PropList, "id", "building"))
-                @*@Html.EditorFor(model => model.appartment_id, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.ValidationMessageFor(model => model.appartment_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.expense_type_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.expense_type_id, new SelectList(ViewBag.ExpList, "id", "name"))
-                @*@Html.EditorFor(model => model.expense_type_id, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.ValidationMessageFor(model => model.expense_type_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <div class="container">
+        <div class="row">
+                <!-- Nav tabs --><div class="card">
+                                     <ul class="nav nav-tabs" role="tablist">
+                                         <li role="presentation" class="active"><a href="#GenralExpence" aria-controls="GenralExpence" role="tab" data-toggle="tab">Genral Expence</a></li>
+                                         <li role="presentation"><a href="#Dewa" aria-controls="Dewa" role="tab" data-toggle="tab">Dewa</a></li>
+                                         <li role="presentation"><a href="#Du" aria-controls="Du" role="tab" data-toggle="tab">Du</a></li>
+                                         @*    <li role="presentation"><a href="#Empower" aria-controls="Empower" role="tab" data-toggle="tab">Empower</a></li>
+        <li role="presentation"><a href="#Transaction" aria-controls="Transaction" role="tab" data-toggle="tab">Transaction</a></li>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.expense, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.expense, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.expense, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                     </ul>
+                    <!-- Tab panes -->
+                                     <div class="tab-content">
+                                         <div role="tabpanel" class="tab-pane active" id="GenralExpence">
+                                             @using (Html.BeginForm("AddExpense", "Property"))
+                                             {
+                                                 @Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.payment_to, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.payment_to, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.payment_to, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                                 <div class="form-horizontal">
+                                                     
+                                                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                     <div class="form-group">
+                                                         @Html.LabelFor(model => model.appartment_id,"Select Appartment" ,htmlAttributes: new { @class = "control-label col-md-2" })
+                                                         <div class="col-md-10">
+                                                             @Html.DropDownListFor(model => model.appartment_id, new SelectList(ViewBag.PropList, "id", "building"))
+                                                             @*@Html.EditorFor(model => model.appartment_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                             @Html.ValidationMessageFor(model => model.appartment_id, "", new { @class = "text-danger" })
+                                                         </div>
+                                                     </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.payment_by_id, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.payment_by_id, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.payment_by_id, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                                     <div class="form-group">
+                                                         @Html.LabelFor(model => model.expense_type_id,"Expence Type",htmlAttributes: new { @class = "control-label col-md-2" })
+                                                         <div class="col-md-10">
+                                                             @Html.DropDownListFor(model => model.expense_type_id, new SelectList(ViewBag.ExpList, "id", "name"))
+                                                             @*@Html.EditorFor(model => model.expense_type_id, new { htmlAttributes = new { @class = "form-control" } })*@
+                                                             @Html.ValidationMessageFor(model => model.expense_type_id, "", new { @class = "text-danger" })
+                                                         </div>
+                                                     </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.payment_date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.payment_date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.payment_date, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                                     <div class="form-group">
+                                                         @Html.LabelFor(model => model.expense,"Expence",htmlAttributes: new { @class = "control-label col-md-2" })
+                                                         <div class="col-md-10">
+                                                             @Html.EditorFor(model => model.expense, new { htmlAttributes = new { @class = "form-control" ,@type="number",@required="true"} })
+                                                             @Html.ValidationMessageFor(model => model.expense, "", new { @class = "text-danger" })
+                                                         </div>
+                                                     </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                                     <div class="form-group">
+                                                         @Html.LabelFor(model => model.payment_to,"Payment To",htmlAttributes: new { @class = "control-label col-md-2" })
+                                                         <div class="col-md-10">
+                                                             @Html.EditorFor(model => model.payment_to, new { htmlAttributes = new { @class = "form-control" } })
+                                                             @Html.ValidationMessageFor(model => model.payment_to, "", new { @class = "text-danger" })
+                                                         </div>
+                                                     </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.added_by, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.added_by, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.added_by, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                                     <div class="form-group">
+                                                         @Html.LabelFor(model => model.payment_by_id, "Payment By", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                         <div class="col-md-10">
+                                                             @Html.DropDownListFor(model => model.payment_by_id, new SelectList(ViewBag.UserList, "id", "username"))
+                                                              @Html.ValidationMessageFor(model => model.payment_by_id, "", new { @class = "text-danger" })
+                                                         </div>
+                                                     </div>
 
-       
-        <div class="form-group">
-            @Html.LabelFor(model => model.expence_date, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.expence_date, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.expence_date, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                                     <div class="form-group">
+                                                         @Html.LabelFor(model => model.payment_date,"Date",htmlAttributes: new { @class = "control-label col-md-2" })
+                                                         <div class="col-md-10">
+                                                             @Html.EditorFor(model => model.payment_date, new { htmlAttributes = new { @class = "form-control", @required = "true", @type="date" } })
+                                                             @Html.ValidationMessageFor(model => model.payment_date, "", new { @class = "text-danger" })
+                                                         </div>
+                                                     </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+                                                     <div class="form-group">
+                                                         @Html.LabelFor(model => model.description, "Description", htmlAttributes: new { @class = "control-label col-md-2" })
+                                                         <div class="col-md-10">
+                                                             @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                                                             @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                                                         </div>
+                                                     </div>                                                    
+                                                     <div class="form-group">
+                                                         <div class="col-md-offset-2 col-md-10">
+                                                             <input type="submit" value="submit" class="btn btn-default" />
+                                                         </div>
+                                                     </div>
+                                                 </div>
+
+                                             }
+                                                                             </div>
+                                         <div role="tabpanel" class="tab-pane" id="Dewa">
+
+                                             <table id="datdatable" class="table table-striped table-bordered">
+                                                 <tbody>
+
+                                                     <tr>
+                                                         <th>Status</th>
+                                                         <th>Appartment</th>
+                                                         <th>Dewa</th>
+                                                         <th>Date</th>
+                                                         <th>Amount</th>
+                                                         <th>Payment By</th>
+                                                         <th>Description</th>
+                                                         <th>Submit</th>
+                                                     </tr>
+
+
+                                                     @foreach (Munshi786.Models.Property item in ViewBag.PropList)
+                                                     {
+                                                         using (Html.BeginForm("AddExpense", "Property"))
+                                                         {
+                                                     <tr>
+                                                         <td>
+                                                             <span class="red-circle" id="dewa_red1"></span>
+                                                         </td>
+                                                         @Html.Hidden("appartment_id", item.id)
+                                                         @Html.Hidden("expense_type_id", 1)
+                                                         <td>@item.building</td>
+                                                         <td>@item.dewa_no</td>
+                                                         <td>
+                                                             <input type="date" name="payment_date">
+                                                         </td>
+                                                         <td>
+                                                             <input type="text" name="expense">
+                                                         </td>
+                                                         <td>
+                                                             @Html.DropDownListFor(model => model.payment_by_id, new SelectList(ViewBag.UserList, "id", "username"))
+                                                         </td>
+                                                         <td>
+                                                             <input type="text" name="description">
+                                                         </td>
+                                                         <td><input type="button" class="btn btn-success" value="Submit"></td>
+                                                     </tr>
+                                                         }
+                                                     }
+                                                     </tbody>
+                                             </table>
+                                         </div>
+                                         <div role="tabpanel" class="tab-pane" id="Du">
+                                             <table id="datdatable" class="table table-striped table-bordered">
+                                                 <tbody>
+                                                     <tr>
+                                                         <th>Status</th>
+                                                         <th>Appartment</th>
+                                                         <th>DU</th>
+                                                         <th>Date</th>
+                                                         <th>Amount</th>
+                                                         <th>Payment By</th>
+                                                         <th>Description</th>
+                                                         <th>Submit</th>
+                                                     </tr>
+                                                     @foreach (Munshi786.Models.Property item in ViewBag.PropList)
+                                                     {
+                                                         using (Html.BeginForm("AddExpense", "Property"))
+                                                         {
+                                                             @Html.Hidden("appartment_id", item.id)
+                                                             @Html.Hidden("expense_type_id", 2)
+                                                             <tr>
+                                                                 <td>
+                                                                     <span class="red-circle" id="du_red1"></span>
+                                                                 </td>
+                                                                 <td>@item.building</td>
+                                                                 <td>@item.du_no</td>
+                                                                 <td>
+                                                                     <input type="date" name="payment_date">
+                                                                 </td>
+                                                                 <td>
+                                                                     <input type="text" name="expense">
+                                                                 </td>
+
+                                                                 <td>
+                                                                     @Html.DropDownListFor(model => model.payment_by_id, new SelectList(ViewBag.UserList, "id", "username"))
+                                                                 </td>
+                                                                 <td>
+                                                                     <input type="text" name="description">
+                                                                 </td>
+                                                                 <td>
+                                                                     <input type="button" class="btn btn-success" value="Submit">
+                                                                 </td>
+
+                                                             </tr>
+
+                                                         }
+                                                     }
+
+                                                 </tbody>
+                                             </table>
+
+                                         </div>
+                                         @*<div role="tabpanel" class="tab-pane" id="Empower">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passage..</div>
+                                         <div role="tabpanel" class="tab-pane" id="Transaction">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passage..</div>*@
+                                     </div>
+                </div>
         </div>
     </div>
-}
+
+
 

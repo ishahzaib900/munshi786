@@ -19,8 +19,6 @@ namespace Munshi786.Models
 
         public int payment_by_id { get; set; }
 
-        public DateTime payment_date { get; set; }
-
         public string description { get; set; }
 
         public int added_by { get; set; }
