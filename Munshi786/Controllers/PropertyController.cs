@@ -92,6 +92,27 @@ namespace Munshi786.Controllers
 
         }
 
+        [HttpPost]
+        public JsonResult DelProperty(int id)
+        {
+            List<ChequeDetail> chequeList;
+            Property p = db.Properties.Where(m => m.id == id).FirstOrDefault();
+            if ( p != null )
+            {
+                chequeList = db.ChequeDetails.Where(m => m.appartment_id == id).ToList<ChequeDetail>();
+                if (chequeList.Count() > 0)
+                {
+                    foreach(var item in chequeList)
+                    {
+                        db.ChequeDetails.Remove(item);
+                    }
+                }
+                db.Properties.Remove(p);
+                db.SaveChanges();
+            }
+            return Json(true, JsonRequestBehavior.DenyGet);
+        }
+
         public ActionResult AddExpenseType()
         {
             return View();
