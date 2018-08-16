@@ -10,7 +10,11 @@ namespace Munshi786.Controllers
 {
     public class PropertyController : Controller
     {
+
         MunshiDBContext db = new MunshiDBContext();
+
+
+        #region Property
         public ActionResult AddProperty()
         {
             return View();
@@ -56,7 +60,7 @@ namespace Munshi786.Controllers
                 decimal cheque_Amount = p.rent / p.no_cheques;
                 DateTime dateStart = p.contract_start_date;
                 ChequeDetail cd;
-                Random rand = new Random() ;
+                Random rand = new Random();
                 for (int i = 0; i < p.no_cheques; i++)
                 {
                     cd = new ChequeDetail()
@@ -65,7 +69,7 @@ namespace Munshi786.Controllers
                         cheque_date = dateStart,
                         cheque_till = dateStart.AddMonths(m_diff),
                         cheque_by_id = 2,
-                        appartment_id = propertyId ,
+                        appartment_id = propertyId,
                         cheque_no = rand.Next()
                     };
                     var added = new ChequeDetailsController().AddCheque(cd);
@@ -80,6 +84,7 @@ namespace Munshi786.Controllers
             }
             return RedirectToAction("AddProperty");
         }
+
 
         public ActionResult ListProperty()
         {
@@ -97,12 +102,12 @@ namespace Munshi786.Controllers
         {
             List<ChequeDetail> chequeList;
             Property p = db.Properties.Where(m => m.id == id).FirstOrDefault();
-            if ( p != null )
+            if (p != null)
             {
                 chequeList = db.ChequeDetails.Where(m => m.appartment_id == id).ToList<ChequeDetail>();
                 if (chequeList.Count() > 0)
                 {
-                    foreach(var item in chequeList)
+                    foreach (var item in chequeList)
                     {
                         db.ChequeDetails.Remove(item);
                     }
@@ -113,28 +118,46 @@ namespace Munshi786.Controllers
             return Json(true, JsonRequestBehavior.DenyGet);
         }
 
-        public ActionResult AddExpenseType()
-        {
-            return View();
-        }
-        [HttpPost]
-        public ActionResult AddExpenseType(ExpenseType exp)
-        {
-            return View();
-        }
-
-        public ActionResult ChequeDetails()
-        {
-            return View();
-        }
-
         public static int GetMonthDifference(DateTime startDate, DateTime endDate)
         {
             int monthsApart = Math.Abs(12 * (startDate.Year - endDate.Year) + startDate.Month - endDate.Month);
             return monthsApart;
         }
+        #endregion
 
-        
+
+        #region Expence
+        public ActionResult AddExpenseType()
+        {
+            if (Session["logged"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login", "Admin");
+        }
+        [HttpPost]
+        public ActionResult AddExpenseType(ExpenseType exp)
+        {
+            db.ExpenseTypes.Add(exp);
+            db.SaveChanges();
+            return RedirectToAction("AddExpenseType", "Property");
+        }
+        public ActionResult AddExpense()
+        {
+            if (Session["logged"] != null)
+            {
+                return View();
+            }
+            return RedirectToAction("Login","Admin");
+        }
+        [HttpPost]
+        public ActionResult AddExpense(Expense exp)
+        {
+            db.Expenses.Add(exp);
+            db.SaveChanges();
+            return RedirectToAction("AddExpense", "Property");
+        }
+        #endregion
 
     }
 }
