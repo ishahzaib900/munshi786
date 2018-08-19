@@ -197,14 +197,21 @@ namespace Munshi786.Controllers
             {
                 return View();
             }
-            return RedirectToAction("Login","Admin");
+            return RedirectToAction("Login", "Admin");
         }
         [HttpPost]
         public ActionResult AddExpense(Expense exp)
         {
-            db.Expenses.Add(exp);
-            db.SaveChanges();
-            return RedirectToAction("AddExpense", "Property");
+            if (Session["logged"] != null)
+            {
+                Users oUser = (Users)Session["logged"];
+                exp.added_date = DateTime.Now;
+                exp.added_by = oUser.Id;
+                db.Expenses.Add(exp);
+                db.SaveChanges();
+                return RedirectToAction("AddExpense", "Property");
+            }
+            return View();
         }
         #endregion
 
