@@ -38,49 +38,35 @@
         <td>
             <span id="@item.id" onclick="GetCheques(@item.id)" class="icon-plus-sign"></span>
         </td>
-        <td>
+        <td id="l_building" >
             @item.building
         </td>
-        <td>
+        <td id="l_start">
             @item.contract_start_date.ToShortDateString()
         </td>
-        <td>
+        <td id="l_end">
             @item.contract_end_date.ToShortDateString()
         </td>
-        <td>
+        <td id="l_rent">
             @item.rent
         </td>
-        <td>
+        <td id="l_deposite">
             @item.deposite
         </td>
-        <td>
+        <td id="l_commission">
             @item.commission
         </td>
-        <td><span class="label label-info">@item.contract_renew days left</span></td>
+        <td><span class="label label-info" id="l_renew">@item.contract_renew days left</span></td>
         <td>
-            <a href="#modal_update" data-toggle="modal" class="btn btn-default btn-lg"><span class="icon-refresh"></span></a> 
-            <button type="button" onclick="ConfirmDel(@item.id)"   class="btn btn-danger"><span class="icon-trash"></span></button> 
+            <button type="button" id="b_upd" onclick="Update(@item.id)" class="btn btn-default"><span class="icon-refresh"></span></button> 
+            <button type="button" id="b_del" onclick="ConfirmDel(@item.id)"   class="btn btn-danger"><span class="icon-trash"></span></button> 
         </td>
     </tr>
 }
 
 </table>
 
-
-<div class="modal" id="modal_confirmsfsfas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Do you want to continue?</h4>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success btn-clean" id="button_yessdfas" data-dismiss="modal">Yes</button>
-                <button type="button" class="btn btn-danger btn-clean" data-dismiss="modal">No</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!--delconfirm modal-->
 
 <div class="modal modal-white" id="modal_confirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -100,7 +86,7 @@
     </div>
 </div> 
 
-
+<!--update modal-->
 <div class="modal modal-white" id="modal_update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -108,16 +94,16 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title">Update Property</h4>
             </div>
-            <form>
+            <form id="form_update">
                 <div class="modal-body clearfix">
                     <div class="controls">
                         <div class="form-row">
                             <div class="col-md-3">Area*</div>
-                            <div class="col-md-9">@Html.TextBox("area", null, new { @class = "form-control", @required = "required" })</div>
+                            <div class="col-md-9">@Html.TextBox("area", null, new { @class = "form-control", @id = "u_area", @required = "required" })</div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">Building*</div>
-                            <div class="col-md-9">@Html.TextBox("building", null, new { @class = "form-control", @required = "required" })</div>
+                            <div class="col-md-9">@Html.TextBox("building", null, new { @class = "form-control", @id = "u_build", @required = "required" })</div>
                         </div>
 
                         <div class="form-row">
@@ -125,69 +111,70 @@
                             <div class="col-md-3">
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="icon-calendar"></span></div>
-                                    @Html.TextBox("contract_start_date", null, new { @class = "datepicker form-control", @required = "required" })
+                                    @Html.TextBox("contract_start_date", null, new { @class = "datepicker form-control", @id = "u_startdate", @required = "required" })
                                 </div>
                             </div>
                             <div class="col-md-3">Contract Ending Date*</div>
                             <div class="col-md-3">
                                 <div class="input-group">
                                     <div class="input-group-addon"><span class="icon-calendar"></span></div>
-                                    @Html.TextBox("contract_end_date", null, new { @class = "mdatepicker  datepicker form-control", @required = "required" })
+                                    @Html.TextBox("contract_end_date", null, new { @class = "mdatepicker  datepicker form-control", @id = "u_enddate", @required = "required" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">Rent*</div>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" step="1" name="rent" required />
+                                <input type="number" class="form-control" id="u_rent" step="1" name="rent" required />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">Deposite*</div>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" step="1" name="deposite" required />
+                                <input type="number" class="form-control" id="u_dep" step="1" name="deposite" required />
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">Commission*</div>
                             <div class="col-md-9">
-                                <input type="number" class="form-control" step="1" name="commission" required />
+                                <input type="number" class="form-control" id="u_comm" step="1" name="commission" required />
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="col-md-3">Num Of Beds</div>
-                            <div class="col-md-9"><input type="number" class="form-control" step="1" name="no_beds" /></div>
+                            <div class="col-md-9"><input type="number" id="u_beds" class="form-control" step="1" name="no_beds" /></div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">Num Of Cheques</div>
-                            <div class="col-md-9"><input type="number" class="form-control" step="1" name="no_cheques" /></div>
+                            <div class="col-md-9"><input type="number" id="u_cheques" class="form-control" step="1" name="no_cheques" /></div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-3">Appartment Number*</div>
-                            <div class="col-md-9">@Html.TextBox("appartment_no", null, new { @class = "form-control", @required = "required" })</div>
+                            <div class="col-md-9">@Html.TextBox("appartment_no", null, new { @class = "form-control", @id = "u_appno", @required = "required" })</div>
                         </div>
 
                         <div class="form-row">
                             <div class="col-md-3">Dewa Number*</div>
-                            <div class="col-md-9">@Html.TextBox("dewa_no", null, new { @class = "form-control", @required = "required" })</div>
+                            <div class="col-md-9">@Html.TextBox("dewa_no", null, new { @class = "form-control", @id = "u_dewa", @required = "required" })</div>
                         </div>
 
                         <div class="form-row">
                             <div class="col-md-3">Du Number</div>
-                            <div class="col-md-9">@Html.TextBox("du_no", null, new { @class = "form-control" })</div>
+                            <div class="col-md-9">@Html.TextBox("du_no", null, new { @class = "form-control", @id = "u_du" })</div>
                         </div>
 
                         <div class="form-row">
                             <div class="col-md-3">Empower Number</div>
-                            <div class="col-md-9">@Html.TextBox("empower_no", null, new { @class = "form-control" })</div>
+                            <div class="col-md-9">@Html.TextBox("empower_no", null, new { @class = "form-control", @id = "u_emp" })</div>
                         </div>
+                        <input type="hidden" name="id" id="u_id" />
                     </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success">Submit form</button>
+                    <button type="submit" class="btn btn-success">Submit form</button>
                 </div>
             </form>
         </div>
@@ -267,29 +254,128 @@
 
            }
 
+           function HideCheques(id){
+               if ($("span[id='" + id + "']").attr("class") == "icon-minus-sign") {
+                   $("span[id='" + id + "']").removeClass("icon-minus-sign").addClass("icon-plus-sign");
+               }
+               if ($("#tr_cheque_" + id).is(":visible") || $("tr.tr_cheque_" + id).is(":visible"))
+               {
+                   $("#tr_cheque_" + id).hide();
+                   $("tr.tr_cheque_" + id).hide();
+               }
+           }
+
 
            function ConfirmDel(id)
            {
                $("#modal_confirm").modal("show");
-               $("#button_yes").attr("onclick","DelProperty("+id+")");
+               $("#button_yes").attr("onclick","Delete("+id+")");
            }
 
-           function DelProperty(id)
+           function Delete(id)
            {
                $.post("/Property/DelProperty/"+id, null)
                    .done(function (data, status) {
                        if (status == "success" && data == true)
                        {
-                           alert("succeed");
+                           noty({ text: 'Success: Property successfully Deleted! Click me', type: 'success' });
                            $("tr[id='" + id + "']").remove();
                        }
                    })
                  .fail(function(jqxhr,status,error){
-                     alert("failded");
+                     noty({ text: 'Error: Property Cannot be deleted! Click me', type: 'error' });
                  });
                    
            }
            
+           function Update(id)
+           {
+               $.get("/Property/GetPropertyById/" + id, null, function (data, status) {
+
+                   if (status == "success" && data.found == true) {
+                       var startdate = new Date(data.contract_start_date).getDate + "-" + new Date(data.contract_start_date).getMonth + "-" + new Date(data.contract_start_date).getFullYear;
+                       var startdate = new Date(data.contract_end_date).getDate + "-" + new Date(data.contract_end_date).getMonth + "-" + new Date(data.contract_end_date).getFullYear;
+                       data = data.data;
+                       HideCheques(id);
+                       $("#modal_update").modal("show");
+                       $("#u_area").val(data.area);
+                       $("#u_build").val(data.building);
+                       $("#u_startdate").val(moment(data.contract_start_date).format("DD/MM/YYYY"));
+                       $("#u_enddate").val(moment(data.contract_end_date).format("DD/MM/YYYY"));
+                       $("#u_rent").val(data.rent);
+                       $("#u_dep").val(data.deposite);
+                       $("#u_comm").val(data.commission);
+                       $("#u_beds").val(data.no_beds);
+                       $("#u_cheques").val(data.no_cheques);
+                       $("#u_appno").val(data.appartment_no);
+                       $("#u_dewa").val(data.dewa_no);
+                       $("#u_du").val(data.du_no);
+                       $("#u_emp").val(data.empower_no);
+                       $("#u_id").val(data.id);
+
+                   }
+                   else {
+                       noty({ text: 'Error: Some unknown error occured! Click me', type: 'error' });
+                   }
+               }).error(function () {
+                   noty({ text: 'Error: Some unknown error occured! Click me', type: 'error' });
+               });
+           }
+
+           $("#form_update").submit(function (event) {
+               $("#modal_update").modal("hide");
+               var $inputs = $("#form_update :input")
+               var data = {};
+               $.each($("#form_update").serializeArray(), function (index, input) {
+                   data[input.name] = input.value;
+               });
+
+               $.post("/Property/UpdateProperty", data, function (dt, status) {
+
+                   if (status == "success" && dt.u == true)
+                   {
+                       var tr = "tr[id=" + data["id"] + "]";
+                       $(tr + " td[id='l_building']").text(data["building"]);
+                       $(tr + " td[id='l_start']").text(data["contract_start_date"]);
+                       $(tr + " td[id='l_end']").text(data["contract_end_date"]);
+                       $(tr + " td[id='l_rent']").text(data["rent"]);
+                       $(tr + " td[id='l_deposite']").text(data["deposite"]);
+                       $(tr + " td[id='l_commission']").text(data["commission"]);
+                       $("span[id="+data["id"]+"]").attr("onclick", "GetCheques(" + dt.newid + ")");
+                       $("span[id="+data["id"]+"]").attr("id", dt.newid);
+                       $(tr + " td button[id='b_upd']").attr("onclick", "Update(" + dt.newid + ")");
+                       $(tr + " td button[id='b_del']").attr("onclick", "ConfirmDel(" + dt.newid + ")");
+                       $(tr + " td span[id='l_renew']").text(Renew(data["contract_end_date"],data["contract_start_date"]) +" days left");
+                       $(tr).attr("id", dt.newid);
+                       noty({ text: 'Success: Property successfully updated! Click me', type: 'success' });
+
+                       return false;
+                   }
+                   else
+                   {
+                       noty({ text: 'Error: Proeprty cannot be updated! Click me', type: 'error' });
+                       return false;
+                   }
+                   return false;
+               })
+               .error(function () {
+                   noty({ text: 'Error: Some unknown error occured! Click me', type: 'error' });
+                   return false;
+               });
+
+
+               return false;
+           });
+
+           function Renew(firstDate, secondDate)
+           {
+               var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+               var firstDate = new Date(firstDate);
+               var secondDate = new Date(secondDate);
+
+               var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+               return diffDays;
+           }
 
        </script>
     

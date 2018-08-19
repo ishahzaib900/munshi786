@@ -88,13 +88,62 @@ namespace Munshi786.Controllers
 
         public ActionResult ListProperty()
         {
-            var list = db.Properties.ToList();
+            var list = db.Properties.ToList().OrderBy(m=>m.created_date);
             foreach(var item in list)
             {
                 item.contract_renew = (item.contract_end_date - item.contract_start_date).Days;
             }
             return View(list);
 
+        }
+
+       
+        public JsonResult GetPropertyById(int id)
+        {
+            bool found = true;
+            Property p = db.Properties.Where(m => m.id == id).FirstOrDefault();
+
+            if (p == null )
+            {
+                found = false;
+            }
+            return Json( new { data = p, found = found} , JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateProperty(Property p)
+        {
+            bool updated = true;
+            int? id = null;
+            var existing =  db.Properties.Where(m => m.id == p.id).FirstOrDefault();
+            if (existing == null)
+                updated = false;
+            else
+            {
+                var clist = db.ChequeDetails.Where(m => m.appartment_id == p.id).ToList();
+                p.created_by = existing.created_by;
+                p.created_date = existing.created_date;
+                p.owner_id = existing.owner_id;
+                p.id = null;
+
+                db.Properties.Remove(existing);
+                db.Properties.Add(p);
+                db.SaveChanges();
+                id = p.id;
+                foreach (var c in clist)
+                {
+                    db.ChequeDetails.Remove(c);
+                }
+                db.SaveChanges();
+
+                foreach (var c in clist)
+                {
+                    c.appartment_id = id;
+                    db.ChequeDetails.Add(c);
+                }
+                db.SaveChanges();
+            }
+            return Json( new { newid = id , u = updated }, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]

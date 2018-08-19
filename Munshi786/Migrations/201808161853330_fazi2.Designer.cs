@@ -7,13 +7,13 @@ namespace Munshi786.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class Prop : IMigrationMetadata
+    public sealed partial class fazi2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Prop));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(fazi2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201808081759323_Prop"; }
+            get { return "201808161853330_fazi2"; }
         }
         
         string IMigrationMetadata.Source
